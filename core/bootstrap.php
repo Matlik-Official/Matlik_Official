@@ -1,17 +1,30 @@
 <?php
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-session_start();
+use App\Core\App;
+use App\Core\Database\{QueryBuilder, Connection};
 
-require_once("core/includes/functions.php");
+require_once('core/includes/functions.php');
 
-$app = [];
+App::bind('config', require_once('config.php'));
 
-$app['config'] = require_once('config.php');
+App::bind('database', new QueryBuilder(
+    Connection::make(App::get('config')['database'])
+));
 
-$app['database'] = new QueryBuilder(
-    Connection::make($app['config']['database'])
-);
+function view ( $name, $data = [] ) {
+
+    extract($data);
+
+    return require_once("app/views/{$name}.view.php");
+    
+}
+
+function redirect ( $path ) {
+
+    header("Location: /{$path}");
+
+}

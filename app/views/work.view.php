@@ -15,7 +15,7 @@
                     ?>
                         <div class="work-card">
                             <h1>Actions<h1>
-                            <a href="/work/add"><span class="material-symbols-outlined">add_circle</span></a>
+                            <a href="/project/add"><span class="material-symbols-outlined">add_circle</span></a>
                         </div>
                     <?php
                 }
@@ -37,7 +37,7 @@
                             ?>
                                 <section>
                                     <a href="/project/edit?id=<?= $work->id; ?>"><span class="material-symbols-outlined">edit</span></a>
-                                    <a href="/project/delete?id=<?= $work->id; ?>"><span class="material-symbols-outlined">delete</span></a>
+                                    <a href="/project/delete/confirm?id=<?= $work->id; ?>"><span class="material-symbols-outlined">delete</span></a>
                                 </section>
                             <?php
                         }

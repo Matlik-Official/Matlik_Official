@@ -1,36 +1,61 @@
 <?php
 
-    class Router {
+namespace App\Core;
 
-        protected $routes = [
-            'GET' => [],
-            'POST' => []
-        ];
+class Router {
 
-        public static function load ( $file ) {
-            
-            $router = new static;
-            
-            require $file;
+    protected $routes = [
+        'GET' => [],
+        'POST' => [],
+    ];
 
-            return $router;
+    public static function load ( $file ) {
 
-        }
+        $router = new static;
 
-        public function get ( $uri, $controller ) {
-            $this->routes['GET'][$uri] = $controller;
-        }
+        require $file;
 
-        public function post ( $uri, $controller ) {
-            $this->routes['POST'][$uri] = $controller;
-        }
+        return $router;
         
-        
-        public function direct ( $uri, $requestType ) {
-            if ( array_key_exists ( $uri, $this->routes[$requestType] ) ) {
-                return $this->routes[$requestType][$uri];
-            }
-            // throw new Exception('No route defined for this URI');
-            require("views/404.view.php");
-        }
     }
+
+    public function get ( $uri, $controller ) {
+        
+        $this->routes['GET'][$uri] = $controller;
+
+    }
+
+    public function post ( $uri, $controller ) {
+        
+        $this->routes['POST'][$uri] = $controller;
+
+    }
+
+    public function direct ( $uri, $requestType ) {
+
+        if ( !array_key_exists($uri, $this->routes[$requestType]) ) {
+            throw new \Exception('No route defined for this URI.');
+        }
+        
+        $this->callAction(
+            ...explode('@', $this->routes[$requestType][$uri])
+        );
+
+    }
+
+    protected function callAction ( $controller, $action ) {
+
+        $controller = "App\\Controllers\\{$controller}";
+
+        $controller = new $controller;
+        if ( !method_exists($controller, $action) ) {
+
+            throw new \Exception("{$controller} does not respond to the {$action} action.");
+           
+        }
+
+        $controller->$action();
+
+    }
+
+}

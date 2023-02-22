@@ -1,17 +1,19 @@
 <?php
 
-    class Request {
+namespace App\Core;
 
-        public static function uri () {
+class Request {
 
-            return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    public static function uri () {
 
-        }
-
-        public static function method () {
-
-            return $_SERVER['REQUEST_METHOD'];
-
-        }
+        return trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
     }
+
+    public static function method () {
+
+        return $_SERVER['REQUEST_METHOD'];
+
+    }
+
+}

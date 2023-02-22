@@ -8,7 +8,7 @@
             <div class="title-box">
                 <h1>Create new work post</h1>
             </div>
-            <form action="/work/add/post" method="post" enctype="multipart/form-data">
+            <form action="/project/add/post" method="post" enctype="multipart/form-data">
                 <input type="text" name="title" id="title" placeholder="Title">
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
                 <input type="url" name="figma" id="figma" placeholder="Figma URL">

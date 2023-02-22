@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +15,10 @@
 </head>
 <body>
 
+    
     <?php
-        require_once('views/partials/nav.php');
-        require_once('views/partials/scrollNav.php');
-    ?>
+        require_once('app/views/partials/nav.php');
+        require_once('app/views/partials/scrollNav.php');
+        ?>
 
-    <a href="#top" class="toTop"><i class="material-icons">expand_less</i></a>
+<a href="#top" class="toTop"><i class="material-icons">expand_less</i></a>
