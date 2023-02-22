@@ -21,6 +21,15 @@ class QueryBuilder {
 
     }
 
+    public function selectAllWhere ( $table, $where ) {
+
+        $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE {$where} ORDER BY id DESC");
+        $stmt->execute();
+        
+        return $stmt->fetchAll(\PDO::FETCH_CLASS);
+
+    }
+
     public function select( $table, $id ) {
         $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE id = {$id} ORDER BY id DESC;");
         $stmt->execute();

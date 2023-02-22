@@ -14,6 +14,16 @@
                 <input type="url" name="github" id="github" placeholder="GitHub URL" value="<?= $project->github ?>">
                 <input type="url" name="project_page" id="project_page" placeholder="Project's page URL" value="<?= $project->project_page ?>">
                 <div class="form-checkbox">
+                    <p title="Is it shown on the home page?">Featured?</p>
+                    <input type="checkbox" name="featured" id="featured" 
+                    <?php 
+                        if ($project->featured == 1) {
+                            echo "checked";
+                        }
+                    ?>
+                    >
+                </div>
+                <div class="form-checkbox">
                     <p>Update Cover Image?</p>
                     <input type="checkbox" name="update_img" id="update_img_checkbox">
                 </div>

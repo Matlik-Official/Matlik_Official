@@ -8,7 +8,9 @@ class PagesController {
 
     public function index () {
 
-        return view('index');        
+        $featured = App::get('database')->selectAllWhere('projects', "featured = 1");
+
+        return view('index', ['featured' => $featured]);        
 
     }
 
